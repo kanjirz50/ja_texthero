@@ -7,11 +7,6 @@ def tokenize(s: pd.Series) -> pd.Series:
 
     tokens = []
     for doc in nlp.pipe(s.astype("unicode").values, batch_size=32):
-        tokens.append(
-            " ".join([
-                token.text
-                for token in doc
-            ])
-        )
+        tokens.append(" ".join([token.text for token in doc]))
 
     return pd.Series(tokens, index=s.index)
